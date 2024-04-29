@@ -9,6 +9,7 @@ class conexiones:
         self.password = password
 
         self.apihost = config.HOST_API
+        self.apiport = config.HOST_PORT
         self.enableSSL = config.ENABLE_SSL
 
         self.wlan = network.WLAN(network.STA_IF)
@@ -36,7 +37,7 @@ class conexiones:
 
     def obtenerUrlApi(self):
         protocolo = 'http://' if not self.enableSSL else 'https://'
-        return protocolo + self.apihost + '/'
+        return protocolo + self.apihost + ':' +self.apiport
 
     def imprimirUnaVariable(self):
         print(config.HOST_API)
