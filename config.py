@@ -7,3 +7,7 @@ ENABLE_SSL = False
 DEFAULT_SSID = 'INFINITUM1999'
 DEFAULT_PASS_WIFI = '8EnMNHYX2L'
 TIMEOUT_WIFI_CONNECT = 10     #segundos
+
+#Datos de identificación del dispositivo
+DEVICE_NAME = 'FDGFFFF'
+DEVICE_ID_DEFAULT = 11
