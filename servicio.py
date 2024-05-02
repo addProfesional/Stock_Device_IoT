@@ -15,17 +15,19 @@ class servicio:
         print('Iniciando sesión...')
         response_to_return = False
         data = {
-            "username": config.DEVICE_NAME,
-            "pass": "uyguyguyhiuy"
+            "name": config.DEVICE_NAME,
+            "password": config.DEVICE_PASS
         }
         json_data = json.dumps(data)
         headers = {'Content-Type': 'application/json'}
-        r = urequests.post(self.urlApi + '/auth/login', data=json_data, headers=headers)
+        r = urequests.post(self.urlApi + '/auth/device', data=json_data, headers=headers)
         if r.status_code == 200:
             print('Sesión iniciada')
             resp = r.json()
             token = resp.get('token')
             self.sesion.establecerToken(token)
+
+            print('Token guardado:' +self.sesion.obtenerToken())
             response_to_return = True
         else:
             print("Error al enviar la solicitud POST. Código de estado:", r.status_code)
@@ -36,7 +38,32 @@ class servicio:
         return response_to_return
 
     def enviarID(self, id_leido):
-        print('Enviando el ID: ' +id_leido)
+        print('Enviando el ID: ' +id_leido+ 'al servidor')
+        data = {
+            "id": id_leido,
+            "device_name": config.DEVICE_NAME
+        }
+        json_data = json.dumps(data)
+        headers = {
+            'Content-Type': 'application/json',
+            'Authorization' : 'Bearer ' +self.sesion.obtenerToken()
+        }
+        print(headers)
+        r = urequests.post(self.urlApi + '/historial/transaccionar/stock', data=json_data, headers=headers)
+
+        if r.status_code == 200:
+            print('Datos enviados')
+            resp = r.json()
+            mensaje = resp.get('msg')
+
+
+            print(mensaje)
+        else:
+            print("Error al enviar la solicitud POST. Código de estado:", r.status_code)
+
+        # Cierra la conexión
+        r.close()
+
 
     def testGet(self):
         print('Probando un GET...')

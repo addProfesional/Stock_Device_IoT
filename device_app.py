@@ -6,7 +6,7 @@ import time
 srv = servicio()
 
 def enviarLectura(id):
-    print('Enviando el ID: ' +id)
+    srv.enviarID(id)
 
 
 def ejecutar():
