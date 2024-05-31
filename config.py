@@ -9,6 +9,7 @@ DEFAULT_PASS_WIFI = '8EnMNHYX2L'
 TIMEOUT_WIFI_CONNECT = 10     #segundos
 
 #Datos de identificación del dispositivo
+#manejar el la gestion de identificacion
 DEVICE_NAME = 'DISPOSITIVO1'
 DEVICE_PASS = 'uoygouiyrfy'
 DEVICE_ID_DEFAULT = 11

@@ -18,6 +18,7 @@ class servicio:
             "name": config.DEVICE_NAME,
             "password": config.DEVICE_PASS
         }
+        #en esta sección hay que encriptar 'data'
         json_data = json.dumps(data)
         headers = {'Content-Type': 'application/json'}
         r = urequests.post(self.urlApi + '/auth/device', data=json_data, headers=headers)
